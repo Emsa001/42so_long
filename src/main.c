@@ -1,47 +1,29 @@
 #include "../includes/so_long.h"
-#include <stdio.h>
 
 
-int map_get_rows(char *map)
-{
-	int rows = 0;
-	int i = 0;
-	while(map[i] != '\0')
-	{
-		if(map[i] == ',')
-			rows++;
-		i++;
-	}
-	return rows;
-}
-
-int map_get_cols(char *map)
-{
-	int cols = 0;
-	int i = 0;
-	while(map[i] != '\0')
-	{
-		if(map[i] == ',')
-			break;
-		cols++;
-		i++;
-	}
-	return cols;
-}
-
-int	main(void)
+int	main(int nb, char **args)
 {
 	t_data data;
+	char *map;
+	if(args[1] == NULL)
+		map = read_map("map.ber");
+	else
+		map = read_map(args[1]);
 
-	char *map = "1111111111111,10010000000C1,1000011111001,1P0011E000001,1111111111111";
 	init_data(&data, map);
-
+	if(!is_possible(map))
+	{
+		printf("Invalid map\n");
+		exit(1);
+	}
+	free(map);
 	mlx_key_hook(data.win, key_hook, &data);
 	mlx_mouse_hook(data.win, mouse_hook, &data);
 
-	render_scene(data);
+	render_static(data);
+	render_scene(&data);
 
-	mlx_do_sync(data.mlx);
+	// mlx_do_sync(data.mlx);
 	mlx_loop(data.mlx);
 	return (0);
 }

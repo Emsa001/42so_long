@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:34:46 by escura            #+#    #+#             */
-/*   Updated: 2024/01/18 18:20:46 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/19 18:52:56 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,52 +22,61 @@ int	key_hook(int keycode, t_data *data)
 	}
     
 	int current_position = find_position(data->map, 'P');
-	if(find_position(data->map, 'E') == -1)
-		return 0;
+	int next_position;
 
+	// d
 	if(keycode == 2){
-		int right_element = data->map[current_position + 1];
-		if(right_element != '1'){
-			data->map[current_position + 1] = 'P';
-			data->map[current_position] = '0';
-			data->player_direction = 0;
-			render_scene(*data);
-			printf("moving right\n");
-		}
-	}
+		next_position = current_position + 1;
+		data->player_direction = 0;
+	}	
 
+	// a
 	if(keycode == 0){
-		int left_element = data->map[current_position - 1];
-		if(left_element != '1'){
-			data->map[current_position - 1] = 'P';
-			data->map[current_position] = '0';
-			data->player_direction = 1;
-			render_scene(*data);
-			printf("moving left\n");
-		}
+		next_position = current_position - 1;
+		data->player_direction = 1;
 	}
 
+	// w
 	if(keycode == 13){
-		int top_element = data->map[current_position - (data->mapCols) - 1];
-		if(top_element != '1'){
-			data->map[current_position - data->mapCols - 1] = 'P';
-			data->map[current_position] = '0';
-			render_scene(*data);
-			printf("moving up\n");
-		}
+		next_position = current_position - (data->mapCols) - 1;
 	}
 
+	// s
 	if(keycode == 1){
-		int down_element = data->map[current_position + (data->mapCols) + 1];
-		if(down_element != '1'){
-			data->map[current_position + data->mapCols + 1] = 'P';
-			data->map[current_position] = '0';
-			render_scene(*data);
-			printf("moving down\n");
-		}
+		next_position = current_position + (data->mapCols) + 1;
 	}
 
-	return (0);
+	char temp = data->map[next_position];
+
+	if(data->map[next_position] != '1' && (keycode == 2 || keycode == 0 || keycode == 13 || keycode == 1))
+	{
+		if(find_position(data->map, 'E') == -1)
+			return 0;
+
+		if(temp == 'E' && count(data->map, 'C') > 0){
+			if(data->text_shown == 0)
+			{
+				show_text(data,"I need to get\nall the potions!");
+				data->text_shown = 1;
+			}
+			return 0;
+		}
+		if(data->text_shown == 1)
+			data->text_shown = 0;
+		data->moves_count++;
+		data->map[next_position] = 'P';
+		data->map[current_position] = '-';
+		render_scene(data);
+		render_moves(*data);
+		data->map[current_position] = '0';
+
+		if(temp == 'C')
+			show_text(data,"Amazing!\nPotion collected!");
+		else if(temp == 'E')
+			victory(data);
+	}
+
+	return (-1);
 }
 
 int	mouse_hook(int button, int x, int y, t_data *data)

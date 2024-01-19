@@ -6,38 +6,11 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:49:38 by escura            #+#    #+#             */
-/*   Updated: 2024/01/18 18:19:45 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/19 16:13:13 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
-
-static int map_get_rows(char *map)
-{
-	int rows = 0;
-	int i = 0;
-	while(map[i] != '\0')
-	{
-		if(map[i] == ',')
-			rows++;
-		i++;
-	}
-	return rows;
-}
-
-static int map_get_cols(char *map)
-{
-	int cols = 0;
-	int i = 0;
-	while(map[i] != '\0')
-	{
-		if(map[i] == ',')
-			break;
-		cols++;
-		i++;
-	}
-	return cols;
-}
 
 void init_data(t_data *data, char *map)
 {
@@ -53,11 +26,17 @@ void init_data(t_data *data, char *map)
 		exit(1);
 	ft_strlcpy(data->map, map, ft_strlen(map) + 1);
 
-    data->width = 650;
-    data->height = 250;
-    data->block_size = 50;
-    data->mapRows = map_get_rows(data->map);
+	data->mapRows = map_get_rows(data->map);
     data->mapCols = map_get_cols(data->map);
+
+    data->block_size = 50;
+	data->rerender = 0;
+    data->width = data->mapCols * data->block_size;
+    data->height = data->mapRows * data->block_size;
+	data->moves_count = 0;
+
+	set_real_positions(data);
+
     data->win = mlx_new_window(data->mlx, data->width, data->height, "So Long");
     
     if (!data->win)
