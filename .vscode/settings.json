@@ -18,6 +18,7 @@
         "unistd.h": "c",
         "mlx.h": "c",
         "libft.h": "c",
-        "__node_handle": "c"
+        "__node_handle": "c",
+        "fcntl.h": "c"
     }
 }

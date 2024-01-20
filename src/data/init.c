@@ -6,11 +6,24 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:49:38 by escura            #+#    #+#             */
-/*   Updated: 2024/01/20 18:38:42 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/20 21:43:06 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
+
+void init_enemy(t_data *data)
+{
+    data->enemy = (t_enemy *)malloc(sizeof(t_enemy));
+    t_enemy *enemy = data->enemy;
+    
+    enemy->texture = data->textures->enemy[0];
+    enemy->direction = 0;
+    enemy->alive = 1;
+    set_real_position(data, &enemy->x, &enemy->y, 'X');
+    enemy->prev_x = -1;
+    enemy->prev_y = -1;
+}
 
 void	init_player(t_data *data)
 {
@@ -18,6 +31,8 @@ void	init_player(t_data *data)
     t_player *player = data->player;
     
 	player->moves = 0;
+    player->alive = 1;
+    player->attack = 0;
     player->texture = data->textures->player[0];
     set_real_position(data, &player->x, &player->y, 'P');
 }
@@ -44,11 +59,15 @@ void init_textures(t_data *data)
     textures->floor = "./textures/floor.xpm";
     textures->exit = "./textures/chest.xpm";
 
+    textures->enemy[0] = "./textures/goblin.xpm";
+    textures->enemy[1] = "./textures/goblin.xpm";
+
     textures->player[0] = "./textures/player_right.xpm";
     textures->player[1] = "./textures/player_left.xpm";
+    textures->player[2] = "./textures/player_killed.xpm";
     
     textures->collectible[0] = "./textures/potion_green.xpm";
-    textures->collectible[1] = "./textures/potion_red.xpm";
+    textures->collectible[1] = "./textures/sword.xpm";
     textures->collectible[2] = "./textures/potion_yellow.xpm";
 }
 
@@ -69,11 +88,13 @@ void init_data(t_data *data, char *map_string)
 
     // player init
 	init_player(data);
+    init_enemy(data);
 
     // window init
     data->width = data->scene->cols * data->scene->block_size;
     data->height = data->scene->rows * data->scene->block_size;
     data->win = mlx_new_window(data->mlx, data->width, data->height, "So Long");
+    data->game_over = 0;
     
     if (!data->win)
     {

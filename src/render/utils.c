@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:38:25 by escura            #+#    #+#             */
-/*   Updated: 2024/01/20 18:39:24 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/20 21:14:48 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void victory(t_data *data)
     int y = data->scene->exit_y * data->scene->block_size;
 
     load_image("/Users/escura/course/projects/ring3/so_long/textures/victory/chest_open.xpm", *data, x, y);
+    data->game_over = 1;
 }
 
 void show_text(t_data *data, char *message)
@@ -41,11 +42,7 @@ void show_text(t_data *data, char *message)
         int y = (data->scene->rows - 1) * data->scene->block_size;
 
         int length = ft_strlen(split[i]);
-        if(length > 10)
-            x -= (length * 3);
-
-        printf("x: %d\n", x);
-        printf("y: %d\n", y);
+        x -= (length * 4);
 
         mlx_string_put(data->mlx, data->win, x, y += 15, 0x00f59e0b, split[i]);
         free(split[i++]);
@@ -53,11 +50,11 @@ void show_text(t_data *data, char *message)
 	free(split);
     i = 0;
 
-    data->scene->rerender = (int **)malloc(sizeof(int *) * 8 + 1);
-    while(i < 8){
+    data->scene->rerender = (int **)malloc(sizeof(int *) * 10 + 1);
+    while(i < 10){
         data->scene->rerender[i] = (int *)malloc(sizeof(int) * 2);
         data->scene->rerender[i][0] = (data->scene->rows - 1);
-        data->scene->rerender[i][1] = (data->scene->cols / 2) - 3 + i;
+        data->scene->rerender[i][1] = (data->scene->cols / 2) - 4 + i;
         i++;
     }
     data->scene->rerender[i] = NULL;

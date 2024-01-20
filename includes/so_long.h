@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 13:46:56 by escura            #+#    #+#             */
-/*   Updated: 2024/01/20 18:35:52 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/20 21:54:23 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ typedef struct s_textures
 	char		*wall;
 	char		*floor;
 	char		*exit;
-	char		*player[2];
+	char		*player[3];
+	char		*enemy[2];
 	char		*collectible[3];
 }				t_textures;
 
@@ -52,8 +53,24 @@ typedef struct s_player
 	int			y;
 
 	int			moves;
+	int			alive;
+	int			attack;
 	char		*texture;
 }				t_player;
+
+typedef struct s_enemy
+{
+	int			x;
+	int			y;
+
+	int			prev_x;
+	int			prev_y;
+
+	int			alive;
+	int			direction;
+
+	char		*texture;
+}				t_enemy;
 
 typedef struct s_data
 {
@@ -64,10 +81,13 @@ typedef struct s_data
 
 	t_scene		*scene;
 	t_player	*player;
+
+	t_enemy		*enemy;
 	t_textures	*textures;
 
-	int			*img;
+	int			game_over;
 
+	int			*img;
 	int			text_shown;
 }				t_data;
 
@@ -96,6 +116,14 @@ void			print_map(const t_scene *scene);
 void			free_data(t_data *data);
 void			render_dynamic(t_data data);
 void			re_render(t_data *data);
-#endif
 
-// https://www.youtube.com/watch?v=10P59aOgi68
+int				check_if_safe(t_data *data, int x, int y);
+int				check_objectives(t_data *data, int x, int y);
+
+int				enemy_move(t_data *data);
+void			kill_player(t_data *data);
+void			init_enemy(t_data *data);
+void			kill_enemy(t_data *data);
+int				find_player(const t_scene *scene);
+
+#endif

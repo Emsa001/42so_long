@@ -6,55 +6,25 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 15:50:17 by escura            #+#    #+#             */
-/*   Updated: 2024/01/20 18:32:30 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/20 22:00:33 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-int check_if_safe(t_data *data, int x, int y)
-{
-    t_scene *scene = data->scene;
-    t_player *player = data->player;
-
-    if(scene->map[x][y] == '1')
-        return (0);
-
-    return (1);
-}
-
-int check_objectives(t_data *data, int x, int y)
-{
-    t_scene *scene = data->scene;
-    t_player *player = data->player;
-
-    if(scene->map[x][y] == 'C')
-    {
-        show_text(data, "Great Job!\n");
-        scene->collectibles--;
-    }
-
-    if(scene->map[x][y] == 'E')
-    {
-        if(scene->collectibles == 0)
-            victory(data);
-        else{
-            show_text(data,"I cannot leave any potions");
-            return 0;
-        }
-    }
-
-    return 1;
-}
-
 int	key_hook(int keycode, t_data *data)
 {
+    printf("You've pressed: %d\n", keycode);
 	if (keycode == 53)
 		free_data(data);
-    
+
     const t_textures *textures = data->textures;
     t_player *player = data->player;
+    t_enemy *enemy = data->enemy;
     t_scene *scene = data->scene;
+
+    if(player->alive == 0)
+        return -1;
 
     int x = player->x;
     int y = player->y;
@@ -81,24 +51,40 @@ int	key_hook(int keycode, t_data *data)
         x++;
     }
 
+    if(keycode == 49 && scene->map[x][y + 1] == 'X'){
+        if(player->attack == 1){
+            if(enemy->alive == 1){
+                scene->map[x][y + 1] = '-';
+                kill_enemy(data);
+            }
+        }
+        else
+            show_text(data, "I need a sword to kill the goblin!\n");
+    }
+
     int temp_x = player->x;
     int temp_y = player->y;
 
-    if(check_if_safe(data, x, y)){
+    if((x != temp_x || y != temp_y) && check_if_safe(data, x, y) && data->game_over == 0){
         if(scene->rerender != NULL)
             re_render(data);
-        
+
         if(check_objectives(data,x,y) == 0)
             return (-1);
-    
-		scene->map[player->x][player->y] = '-';
-        player->x = x;
-        player->y = y;
-        scene->map[x][y] = 'P';
+        if(player->alive == 1){
+            scene->map[player->x][player->y] = '-';
+            player->x = x;
+            player->y = y;
+            scene->map[x][y] = 'P';
+        }
         player->moves++;
+
+        if(data->game_over == 0)
+            enemy_move(data);
         render_dynamic(*data);
         scene->map[temp_x][temp_y] = '0';
-
+        if(enemy->prev_x != -1 && enemy->prev_y != -1)
+            scene->map[enemy->prev_x][enemy->prev_y] = '0';
     }
         
 	return (-1);

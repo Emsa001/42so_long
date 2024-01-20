@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 15:26:31 by escura            #+#    #+#             */
-/*   Updated: 2024/01/20 18:20:18 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/20 22:00:42 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void render_static(t_data data)
     const t_scene *scene = data.scene;
     const t_textures *textures = data.textures;
     const t_player *player = data.player;
+    const t_enemy *enemy = data.enemy;
     
     int i = 0;
     while (i < scene->rows)
@@ -31,12 +32,15 @@ void render_static(t_data data)
                 load_image(textures->wall, data, j * scene->block_size, i * scene->block_size);
 
             if (block == 'C')
+                load_image(textures->collectible[0], data, j * scene->block_size, i * scene->block_size);
+            else if(block == 'S')
                 load_image(textures->collectible[1], data, j * scene->block_size, i * scene->block_size);
             else if (block == 'E')
                 load_image(textures->exit, data, j * scene->block_size, i * scene->block_size);
             else if (block == 'P')
                 load_image(player->texture, data, j * scene->block_size, i * scene->block_size);
-
+            if (block == 'X')
+                load_image(enemy->texture, data, j * scene->block_size, i * scene->block_size);
             j++;
         }
         i++;
@@ -48,8 +52,13 @@ void render_dynamic(t_data data)
     const t_scene *scene = data.scene;
     const t_textures *textures = data.textures;
     const t_player *player = data.player;
+    const t_enemy *enemy = data.enemy;
     
-    // print_map(scene);
+    printf("\n\n");
+    print_map(scene);
+
+    if(find_player(scene) == 0)
+        kill_player(&data);
 
     int i = 0;
     while (i < scene->rows)
@@ -63,7 +72,9 @@ void render_dynamic(t_data data)
             
             if (block == 'P')
                 load_image(player->texture, data, j * scene->block_size, i * scene->block_size);
-
+            
+            if (block == 'X')
+                load_image(enemy->texture, data, j * scene->block_size, i * scene->block_size);
             j++;
         }
         i++;
