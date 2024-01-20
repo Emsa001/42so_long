@@ -5,127 +5,118 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/18 14:56:26 by escura            #+#    #+#             */
-/*   Updated: 2024/01/19 17:52:25 by escura           ###   ########.fr       */
+/*   Created: 2024/01/20 15:26:31 by escura            #+#    #+#             */
+/*   Updated: 2024/01/20 18:20:18 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-int render_rect(t_data data, t_rect rect)
-{
-    int i;
-    int j;
-
-    if (data.win == NULL)
-        return (1);
-
-    // Draw top and bottom borders
-    for (j = rect.x; j < rect.x + rect.width; j++)
-    {
-        mlx_pixel_put(data.win, data.win, j, rect.y, rect.color);
-        mlx_pixel_put(data.win, data.win, j, rect.y + rect.height - 1, rect.color);
-    }
-
-    // Draw left and right borders
-    for (i = rect.y; i < rect.y + rect.height; i++)
-    {
-        mlx_pixel_put(data.win, data.win, rect.x, i, rect.color);
-        mlx_pixel_put(data.win, data.win, rect.x + rect.width - 1, i, rect.color);
-    }
-
-    return (0);
-}
-
-void load_image(char *path, t_data data, int x, int y)
-{
-    void *img;
-    int img_width;
-    int img_height;
-    img = mlx_xpm_file_to_image(data.mlx, path, &img_width, &img_height);
-    if (img == NULL) {
-        printf("Failed to load image\n");
-        exit(1);
-    }
-
-    mlx_put_image_to_window(data.mlx, data.win, img, x, y);
-    mlx_destroy_image(data.mlx, img);
-}
-
-void	render_scene(t_data *data)
-{
-    char *row, *map_copy;
-    int i, j;
-
-    if(data->rerender == 1){
-        mlx_clear_window(data->mlx, data->win);
-        render_static(*data);
-        data->rerender = 0;
-    }
-
-    map_copy = ft_strdup(data->map);
-    row = ft_strtok(map_copy, "\n");
-
-    for(i = 0; row != NULL; i++) {
-        for(j = 0; j < ft_strlen(row); j++) {
-            if(row[j] == 'P') {
-                load_image("/Users/escura/course/projects/ring3/so_long/textures/floor.xpm", *data, j*data->block_size, i*data->block_size);
-                if(data->player_direction == 0){
-                    load_image("/Users/escura/course/projects/ring3/so_long/textures/player_right.xpm", *data, j*data->block_size, i*data->block_size);
-                }else{
-                    load_image("/Users/escura/course/projects/ring3/so_long/textures/player_left.xpm", *data, j*data->block_size, i*data->block_size);
-                }
-
-                data->player_x = j*data->block_size;
-                data->player_y = i*data->block_size;
-            }
-            else if(row[j] == '-'){
-                load_image("/Users/escura/course/projects/ring3/so_long/textures/floor.xpm", *data, j*data->block_size, i*data->block_size);
-            }
-        }
-        row = ft_strtok(NULL, "\n");
-    }
-    
-    free(map_copy);
-}
-
 void render_static(t_data data)
 {
-    char *row, *map_copy;
-    int i, j;
+    const t_scene *scene = data.scene;
+    const t_textures *textures = data.textures;
+    const t_player *player = data.player;
+    
+    int i = 0;
+    while (i < scene->rows)
+    {
+        int j = 0;
+        while (j < scene->cols)
+        {
+            char block = scene->map[i][j];
+            if(block != '1')
+                load_image(textures->floor, data, j * scene->block_size, i * scene->block_size);
+            else if (block == '1')
+                load_image(textures->wall, data, j * scene->block_size, i * scene->block_size);
 
-    map_copy = ft_strdup(data.map);
-    row = ft_strtok(map_copy, "\n");
+            if (block == 'C')
+                load_image(textures->collectible[1], data, j * scene->block_size, i * scene->block_size);
+            else if (block == 'E')
+                load_image(textures->exit, data, j * scene->block_size, i * scene->block_size);
+            else if (block == 'P')
+                load_image(player->texture, data, j * scene->block_size, i * scene->block_size);
 
-    for(i = 0; row != NULL; i++) {
-        for(j = 0; j < ft_strlen(row); j++) {
-            if(row[j] == '1')
-                load_image("/Users/escura/course/projects/ring3/so_long/textures/wall.xpm", data, j*data.block_size, i*data.block_size);
-            else
-                load_image("/Users/escura/course/projects/ring3/so_long/textures/floor.xpm", data, j*data.block_size, i*data.block_size);
-
-            if(row[j] == 'E') {
-                load_image("/Users/escura/course/projects/ring3/so_long/textures/chest.xpm", data, j*data.block_size, i*data.block_size);
-            }
-            else if(row[j] == 'C')
-                load_image("/Users/escura/course/projects/ring3/so_long/textures/potion_green.xpm", data, j*data.block_size, i*data.block_size);
+            j++;
         }
-        row = ft_strtok(NULL, "\n");
+        i++;
     }
+}
 
-    free(map_copy);
+void render_dynamic(t_data data)
+{
+    const t_scene *scene = data.scene;
+    const t_textures *textures = data.textures;
+    const t_player *player = data.player;
+    
+    // print_map(scene);
+
+    int i = 0;
+    while (i < scene->rows)
+    {
+        int j = 0;
+        while (j < scene->cols)
+        {
+            char block = scene->map[i][j];
+            if (block == '-' || block == 'P')
+                load_image(textures->floor, data, j * scene->block_size, i * scene->block_size);
+            
+            if (block == 'P')
+                load_image(player->texture, data, j * scene->block_size, i * scene->block_size);
+
+            j++;
+        }
+        i++;
+    }
+    render_moves(data);
 }
 
 void render_moves(t_data data)
 {
-    char *moves = ft_itoa(data.moves_count);
+    t_scene *scene = data.scene;
+    const t_textures *textures = data.textures;
+    const t_player *player = data.player;
+    
+    char *moves = ft_itoa(player->moves);
     int cols = 4;
 
     while(cols--){
-        load_image("/Users/escura/course/projects/ring3/so_long/textures/wall.xpm", data, cols*data.block_size, 0);
+        load_image(textures->wall, data, cols*scene->block_size, 0);
     }
 
     mlx_string_put(data.mlx, data.win, 5, 5, 0x00f59e0b, "Moves:");
     mlx_string_put(data.mlx, data.win, 70, 5, 0x00f59e0b, moves);
     free(moves);
+}
+
+void re_render(t_data *data)
+{
+    t_scene *scene = data->scene;
+    const t_textures *textures = data->textures;
+    const t_player *player = data->player;
+
+    int i = 0;
+    while (scene->rerender[i])
+    {
+        int x = scene->rerender[i][0];
+        int y = scene->rerender[i][1];
+        char block = scene->map[x][y];
+
+        if (block == '1')
+            load_image(textures->wall, *data, y * scene->block_size, x * scene->block_size);
+        else
+            load_image(textures->floor, *data, y * scene->block_size, x * scene->block_size);
+
+        if (block == 'C')
+                load_image(textures->collectible[1], *data, y * scene->block_size, x * scene->block_size);
+        else if (block == 'E')
+            load_image(textures->exit, *data, y * scene->block_size, x * scene->block_size);
+        else if (block == 'P')
+            load_image(player->texture, *data, y * scene->block_size, x * scene->block_size);
+            
+
+        free(scene->rerender[i++]);
+    }
+    free(scene->rerender);
+    scene->rerender = NULL;
 }

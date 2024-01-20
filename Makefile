@@ -6,7 +6,7 @@
 #    By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/30 13:49:31 by escura            #+#    #+#              #
-#    Updated: 2024/01/19 16:07:08 by escura           ###   ########.fr        #
+#    Updated: 2024/01/20 15:51:31 by escura           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,8 +27,10 @@ LDFLAGS = -Lincludes/minilibx -lmlx -framework OpenGL -framework AppKit
 # Source Files and Object Files
 SRC_DIR = src
 INCLUDES_DIR = includes
+GET_NEXT_LINE = ./includes/get_next_line/get_next_line.c
 
-SRC = $(wildcard $(SRC_DIR)/*.c) $(wildcard $(SRC_DIR)/*/*.c) ./includes/get_next_line/get_next_line.c
+SRC = $(wildcard $(SRC_DIR)/data/*.c) $(wildcard $(SRC_DIR)/map/*.c) $(wildcard $(SRC_DIR)/main.c) $(SRC_DIR)/render/scene.c $(SRC_DIR)/render/utils.c \
+	  $(SRC_DIR)/hooks/key.c $(SRC_DIR)/hooks/mouse.c $(GET_NEXT_LINE)
 	
 OBJ_DIR = .obj
 OBJ = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))

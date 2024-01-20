@@ -14,6 +14,10 @@
         "so_long.h": "c",
         "get_next_line.h": "c",
         "stdbool.h": "c",
-        "iterator": "c"
+        "iterator": "c",
+        "unistd.h": "c",
+        "mlx.h": "c",
+        "libft.h": "c",
+        "__node_handle": "c"
     }
 }

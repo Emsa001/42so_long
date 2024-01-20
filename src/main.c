@@ -1,5 +1,16 @@
-#include "../includes/so_long.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/20 14:17:22 by escura            #+#    #+#             */
+/*   Updated: 2024/01/20 16:47:05 by escura           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "../includes/so_long.h"
 
 int	main(int nb, char **args)
 {
@@ -11,17 +22,10 @@ int	main(int nb, char **args)
 		map = read_map(args[1]);
 
 	init_data(&data, map);
-	if(!is_possible(map))
-	{
-		printf("Invalid map\n");
-		exit(1);
-	}
-	free(map);
-	mlx_key_hook(data.win, key_hook, &data);
+	mlx_hook(data.win, 2, 0, key_hook, &data);
 	mlx_mouse_hook(data.win, mouse_hook, &data);
 
 	render_static(data);
-	render_scene(&data);
 
 	// mlx_do_sync(data.mlx);
 	mlx_loop(data.mlx);
