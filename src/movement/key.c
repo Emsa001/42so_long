@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 15:50:17 by escura            #+#    #+#             */
-/*   Updated: 2024/01/20 22:00:33 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/21 15:29:49 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	key_hook(int keycode, t_data *data)
         if(scene->rerender != NULL)
             re_render(data);
 
-        if(check_objectives(data,x,y) == 0)
+        if(check_objectives(data,x,y) != 1)
             return (-1);
         if(player->alive == 1){
             scene->map[player->x][player->y] = '-';
@@ -78,13 +78,8 @@ int	key_hook(int keycode, t_data *data)
             scene->map[x][y] = 'P';
         }
         player->moves++;
-
-        if(data->game_over == 0)
-            enemy_move(data);
         render_dynamic(*data);
         scene->map[temp_x][temp_y] = '0';
-        if(enemy->prev_x != -1 && enemy->prev_y != -1)
-            scene->map[enemy->prev_x][enemy->prev_y] = '0';
     }
         
 	return (-1);

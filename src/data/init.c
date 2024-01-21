@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:49:38 by escura            #+#    #+#             */
-/*   Updated: 2024/01/20 21:43:06 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/21 15:39:23 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void init_data(t_data *data, char *map_string)
     init_enemy(data);
 
     // window init
+    data->frame_update = 0;
     data->width = data->scene->cols * data->scene->block_size;
     data->height = data->scene->rows * data->scene->block_size;
     data->win = mlx_new_window(data->mlx, data->width, data->height, "So Long");

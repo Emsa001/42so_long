@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 13:46:56 by escura            #+#    #+#             */
-/*   Updated: 2024/01/20 21:54:23 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/21 15:39:27 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ typedef struct s_data
 	t_textures	*textures;
 
 	int			game_over;
+	int			frame_update;
 
 	int			*img;
 	int			text_shown;

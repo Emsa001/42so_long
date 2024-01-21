@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 20:37:43 by escura            #+#    #+#             */
-/*   Updated: 2024/01/20 21:44:44 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/21 15:30:28 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void kill_player(t_data *data)
     data->game_over = 1;
     player->alive = 0;
     player->texture = data->textures->player[2];
+    render_dynamic(*data);
     show_text(data, "You died! Press ESC to exit");
 }
 

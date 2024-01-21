@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 15:26:31 by escura            #+#    #+#             */
-/*   Updated: 2024/01/20 22:00:42 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/21 15:04:29 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ void render_dynamic(t_data data)
     printf("\n\n");
     print_map(scene);
 
-    if(find_player(scene) == 0)
-        kill_player(&data);
 
     int i = 0;
     while (i < scene->rows)
