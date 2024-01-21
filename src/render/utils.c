@@ -6,45 +6,27 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:38:25 by escura            #+#    #+#             */
-/*   Updated: 2024/01/20 21:14:48 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/21 23:22:12 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-void victory(t_data *data)
-{
-    int win_width = data->width;
-    int win_height = data->height;
-
-    // Calculate the center of the screen
-    int center_x = (win_width / 2) - 30;
-    int center_y = (win_height / 2) - 30;
-
-    // Print "You Win" at the center of the screen
-    mlx_string_put(data->mlx, data->win, center_x, center_y, 0xFFFFFF, "You Win");
-
-    int x = data->scene->exit_x * data->scene->block_size;
-    int y = data->scene->exit_y * data->scene->block_size;
-
-    load_image("/Users/escura/course/projects/ring3/so_long/textures/victory/chest_open.xpm", *data, x, y);
-    data->game_over = 1;
-}
-
 void show_text(t_data *data, char *message)
 {
+    const t_textures *textures = data->textures;
+    int center_x = (data->scene->cols / 2) * data->scene->block_size;
+    int center_y = (data->scene->rows - 1) * data->scene->block_size;
     char **split = ft_split(message, '\n');
 
+    re_render(data);
     int i = 0;
     while(split[i])
     {
-        int x = (data->scene->cols / 2) * data->scene->block_size;
-        int y = (data->scene->rows - 1) * data->scene->block_size;
-
         int length = ft_strlen(split[i]);
-        x -= (length * 4);
+        center_x -= (length * 4);
 
-        mlx_string_put(data->mlx, data->win, x, y += 15, 0x00f59e0b, split[i]);
+        mlx_string_put(data->mlx, data->win, center_x, center_y += 15, 0x00f59e0b, split[i]);
         free(split[i++]);
     }
 	free(split);

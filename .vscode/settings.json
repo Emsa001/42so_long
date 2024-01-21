@@ -19,6 +19,7 @@
         "mlx.h": "c",
         "libft.h": "c",
         "__node_handle": "c",
-        "fcntl.h": "c"
+        "fcntl.h": "c",
+        "system_error": "c"
     }
 }
