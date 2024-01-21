@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 20:09:24 by escura            #+#    #+#             */
-/*   Updated: 2024/01/21 23:14:26 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/21 23:42:16 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,10 @@ int check_objectives(t_data *data, int x, int y)
     }
     else if(scene->map[x][y] == 'E')
     {
-        if(scene->collectibles == 0){
+        if(scene->collectibles == 0)
             victory(data);
-            return 1;
-        }
-        show_text(data,"I cannot leave any potions");
+        else
+            show_text(data,"I cannot leave any potions");
         return 0;
     }
     else if(scene->map[x][y] == 'X'){    
@@ -74,10 +73,11 @@ void victory(t_data *data)
     int center_x = (win_width / 2) - 30;
     int center_y = (win_height / 2) - 30;
 
+    load_image(textures->floor, *data, player->y * scene->block_size, player->x * scene->block_size);
+    
     load_image(textures->message[1], *data, center_x - 60, center_y - 20);
     mlx_string_put(data->mlx, data->win, center_x, center_y, 0x000000, "You Win");
     show_text(data,"Press ESC to exit");
-    load_image(textures->floor, *data, player->y * scene->block_size, player->x * scene->block_size);
 
     data->game_over = 1;
 }

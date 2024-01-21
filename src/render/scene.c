@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 15:26:31 by escura            #+#    #+#             */
-/*   Updated: 2024/01/21 23:23:37 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/21 23:43:06 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void render_dynamic(t_data data)
     // printf("\n\n");
     // print_map(scene);
 
-    if(data.game_over == 1)
+    if(data.game_over == 1 && player->alive == 1)
         return;
 
     int temp = 0;
