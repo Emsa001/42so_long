@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:14:29 by escura            #+#    #+#             */
-/*   Updated: 2024/01/20 21:45:02 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/22 13:24:39 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,12 @@ void set_real_position(t_data *data, int *x_pos, int *y_pos, char c)
 
 void print_map(const t_scene *scene)
 {
+	printf("\n");
 	for(int i = 0; i < scene->rows; i++)
     {
         for(int j = 0; j < scene->cols; j++)
             printf("%c", scene->map[i][j]);
         printf("\n");
     }
+	printf("\n");
 }

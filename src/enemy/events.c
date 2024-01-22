@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 20:37:43 by escura            #+#    #+#             */
-/*   Updated: 2024/01/21 22:56:31 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/22 13:57:13 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,12 @@ void kill_enemy(t_data *data, int x, int y)
 
     if(!enemy->alive)
         return;
-    scene->map[x][y] = '-';
+    scene->map[x][y] = 'x';
 
+    enemy->texture = 0;
     enemy->alive = 0;
-    show_text(data, "I killed the goblin!\n");
     player->attack = 0;
+    show_text(data, "I killed the goblin!\n");
     render_dynamic(*data);
     // init_enemy(data);    
 }

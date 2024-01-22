@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:49:38 by escura            #+#    #+#             */
-/*   Updated: 2024/01/21 23:11:21 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/22 13:51:58 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	init_player(t_data *data)
     player->attack = 0;
     player->direction = 0;
     player->texture = 0;
+    player->bombs = 3;
     set_real_position(data, &player->x, &player->y, 'P');
 }
 
@@ -83,43 +84,48 @@ void init_textures(t_data *data)
     data->textures = (t_textures *)malloc(sizeof(t_textures));
     t_textures *textures = data->textures;
 
-    textures->wall = "./new_textures/tiles/wall.xpm";
-    textures->floor = "./new_textures/tiles/floor.xpm";
-    textures->exit[0] = "./new_textures/tiles/doors_closed.xpm";
-    textures->exit[1] = "./new_textures/tiles/doors_open.xpm";
+    textures->wall = "./textures/tiles/wall.xpm";
+    textures->floor = "./textures/tiles/floor.xpm";
+    textures->exit[0] = "./textures/tiles/doors_closed.xpm";
+    textures->exit[1] = "./textures/tiles/doors_open.xpm";
 
-    textures->enemy[0] = "./new_textures/enemy/right/idle_1.xpm";
-    textures->enemy[1] = "./new_textures/enemy/right/idle_2.xpm";
-    textures->enemy[2] = "./new_textures/enemy/right/idle_3.xpm";
-    textures->enemy[3] = "./new_textures/enemy/right/idle_4.xpm";
+    textures->enemy[0] = "./textures/enemy/right/idle_1.xpm";
+    textures->enemy[1] = "./textures/enemy/right/idle_2.xpm";
+    textures->enemy[2] = "./textures/enemy/right/idle_3.xpm";
+    textures->enemy[3] = "./textures/enemy/right/idle_4.xpm";
 
-    textures->player[0] = "./new_textures/player/right/idle_1.xpm";
-    textures->player[1] = "./new_textures/player/right/idle_2.xpm";
-    textures->player[2] = "./new_textures/player/right/idle_3.xpm";
-    textures->player[3] = "./new_textures/player/right/idle_4.xpm";
+    textures->enemy[4] = "./textures/enemy/dead/1.xpm";
+    textures->enemy[5] = "./textures/enemy/dead/2.xpm";
+    textures->enemy[6] = "./textures/enemy/dead/3.xpm";
+    textures->enemy[7] = "./textures/enemy/dead/4.xpm";
 
-    textures->player[4] = "./new_textures/player/left/idle_1.xpm";
-    textures->player[5] = "./new_textures/player/left/idle_2.xpm";
-    textures->player[6] = "./new_textures/player/left/idle_3.xpm";
-    textures->player[7] = "./new_textures/player/left/idle_4.xpm";
+    textures->player[0] = "./textures/player/right/idle_1.xpm";
+    textures->player[1] = "./textures/player/right/idle_2.xpm";
+    textures->player[2] = "./textures/player/right/idle_3.xpm";
+    textures->player[3] = "./textures/player/right/idle_4.xpm";
 
-    textures->player[8] = "./new_textures/player/dead/1.xpm";
-    textures->player[9] = "./new_textures/player/dead/2.xpm";
-    textures->player[10] = "./new_textures/player/dead/3.xpm";
-    textures->player[11] = "./new_textures/player/dead/4.xpm";
+    textures->player[4] = "./textures/player/left/idle_1.xpm";
+    textures->player[5] = "./textures/player/left/idle_2.xpm";
+    textures->player[6] = "./textures/player/left/idle_3.xpm";
+    textures->player[7] = "./textures/player/left/idle_4.xpm";
+
+    textures->player[8] = "./textures/player/dead/1.xpm";
+    textures->player[9] = "./textures/player/dead/2.xpm";
+    textures->player[10] = "./textures/player/dead/3.xpm";
+    textures->player[11] = "./textures/player/dead/4.xpm";
     
 
-    textures->collectible[0] = "./new_textures/items/potion.xpm";
-    textures->collectible[1] = "./new_textures/items/sword.xpm";
+    textures->collectible[0] = "./textures/items/potion.xpm";
+    textures->collectible[1] = "./textures/items/sword.xpm";
 
-    textures->explosion[0] = "./new_textures/explosion/1.xpm";
-    textures->explosion[1] = "./new_textures/explosion/2.xpm";
-    textures->explosion[2] = "./new_textures/explosion/3.xpm";
-    textures->explosion[3] = "./new_textures/explosion/4.xpm";
+    textures->explosion[0] = "./textures/explosion/1.xpm";
+    textures->explosion[1] = "./textures/explosion/2.xpm";
+    textures->explosion[2] = "./textures/explosion/3.xpm";
+    textures->explosion[3] = "./textures/explosion/4.xpm";
     textures->explosion[4] = textures->floor;
 
-    textures->message[0] = "./new_textures/ui/message.xpm";
-    textures->message[1] = "./new_textures/ui/broadcast.xpm";
+    textures->message[0] = "./textures/ui/message.xpm";
+    textures->message[1] = "./textures/ui/broadcast.xpm";
 }
 
 void init_data(t_data *data, char *map_string)

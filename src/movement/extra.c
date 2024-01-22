@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 18:02:35 by escura            #+#    #+#             */
-/*   Updated: 2024/01/21 21:41:19 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/22 12:17:06 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@ void boom(t_data *data)
 {
     t_player *player = data->player;
     t_scene *scene = data->scene;
+    if(player->bombs == 0)
+        return;
+    player->bombs--;
     scene->boom_animation = 0;
 
     int x = player->x;
@@ -37,8 +40,11 @@ void boom(t_data *data)
             if(temp_y >= scene->cols - 1)
                 temp_y = scene->cols - 2;
             
-            if(scene->map[temp_x][temp_y] == '1')
+            if(scene->map[temp_x][temp_y] == '1' || scene->map[temp_x][temp_y] == 'X'){
+                if(scene->map[temp_x][temp_y] == 'X')
+                    kill_enemy(data, temp_x, temp_y);
                 scene->map[temp_x][temp_y] = 'B';
+            }
         }
     }
     render_dynamic(*data);

@@ -6,7 +6,7 @@
 #    By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/30 13:49:31 by escura            #+#    #+#              #
-#    Updated: 2024/01/21 18:04:18 by escura           ###   ########.fr        #
+#    Updated: 2024/01/22 13:50:34 by escura           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,8 +29,7 @@ SRC_DIR = src
 INCLUDES_DIR = includes
 GET_NEXT_LINE = ./includes/get_next_line/get_next_line.c
 
-SRC = $(wildcard $(SRC_DIR)/data/*.c) $(wildcard $(SRC_DIR)/map/*.c) $(wildcard $(SRC_DIR)/main.c) $(SRC_DIR)/render/scene.c $(SRC_DIR)/render/utils.c \
-	  $(SRC_DIR)/movement/key.c $(SRC_DIR)/movement/mouse.c $(SRC_DIR)/movement/utils.c $(SRC_DIR)/movement/extra.c $(SRC_DIR)/enemy/events.c $(SRC_DIR)/enemy/move.c $(GET_NEXT_LINE)
+SRC = $(wildcard $(SRC_DIR)/*.c) $(wildcard $(SRC_DIR)/*/*.c) $(GET_NEXT_LINE)
 	
 OBJ_DIR = .obj
 OBJ = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))

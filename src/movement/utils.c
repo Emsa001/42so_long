@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 20:09:24 by escura            #+#    #+#             */
-/*   Updated: 2024/01/21 23:42:16 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/22 13:56:20 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ void kill_player(t_data *data)
     t_player *player = data->player;
     const t_textures *textures = data->textures;
     const t_scene *scene = data->scene;
-
 
     data->game_over = 1;
     player->alive = 0;

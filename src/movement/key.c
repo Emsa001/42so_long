@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 15:50:17 by escura            #+#    #+#             */
-/*   Updated: 2024/01/21 23:41:11 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/22 13:53:46 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	key_hook(int keycode, t_data *data)
     const t_textures *textures = data->textures;
     t_player *player = data->player;
     t_scene *scene = data->scene;
-
-    if(player->alive == 0)
+    
+    if(data->game_over == 1)
         return -1;
 
     int x = player->x;

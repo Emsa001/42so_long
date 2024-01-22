@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 13:46:56 by escura            #+#    #+#             */
-/*   Updated: 2024/01/21 23:33:58 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/22 13:30:49 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_textures
 	char		*floor;
 	char		*exit[2];
 	char		*player[12];
-	char		*enemy[4];
+	char		*enemy[8];
 	char		*collectible[2];
 	char		*explosion[5];
 	char 		*message[2];
@@ -61,6 +61,7 @@ typedef struct s_player
 	int			attack;
 	int			direction;
 	int			texture;
+	int			bombs;
 }				t_player;
 
 typedef struct s_enemy
@@ -132,5 +133,7 @@ void			init_enemy(t_data *data);
 void			kill_enemy(t_data *data, int x, int y);
 int				find_player(const t_scene *scene);
 void			boom(t_data *data);
+void render_enemy(t_data *data, t_enemy *enemy);
+
 
 #endif

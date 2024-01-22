@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 14:17:22 by escura            #+#    #+#             */
-/*   Updated: 2024/01/21 23:42:39 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/22 13:54:50 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int render_next_frame(t_data *data)
 	const int enemies = count(data->scene->map_string, 'X');
 	int i = 0;
 
-	if(player->alive == 0 && player->texture == 3)
+	if((player->alive == 0 && player->texture == 3) || (player->alive == 1 && data->game_over == 1))
 		return -1;
 
 	if(data->scene->boom_animation != -1 && data->scene->boom_animation < 4)
@@ -59,11 +59,23 @@ int render_next_frame(t_data *data)
 			player->texture = 0;
 		else
 			player->texture++;
-	
-		if(data->enemy[0]->texture >= 3)
-			data->enemy[0]->texture = 0;
-		else
-			data->enemy[0]->texture++;
+
+		while(i < enemies){
+			if(data->enemy[i]->alive == 0)
+			{
+				if(data->enemy[i]->texture <= 4)
+					data->enemy[i]->texture++;
+			}
+			else{	
+				if(data->enemy[i]->texture >= 3)
+					data->enemy[i]->texture = 0;
+				else
+					data->enemy[i]->texture++;
+			}
+
+			render_enemy(data, data->enemy[i]);
+			i++;
+		}
 
 		render_dynamic(*data);
 	}
@@ -77,6 +89,8 @@ int render_next_frame(t_data *data)
 	
 	if(player->alive == 0)
 		return -1;
+
+	i = 0;
 	while(i < enemies){
 		int x = random_number(0, 1);
 		t_enemy *enemy = data->enemy[i++];

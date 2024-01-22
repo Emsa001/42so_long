@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 15:26:31 by escura            #+#    #+#             */
-/*   Updated: 2024/01/21 23:43:06 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/22 13:27:38 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void render_static(t_data data)
     const t_scene *scene = data.scene;
     const t_textures *textures = data.textures;
     const t_player *player = data.player;
-    const t_enemy *enemy = data.enemy[0];
     
     int i = 0;
     while (i < scene->rows)
@@ -40,7 +39,7 @@ void render_static(t_data data)
             else if (block == 'P')
                 load_image(textures->player[player->texture], data, j * scene->block_size, i * scene->block_size);
             if (block == 'X')
-                load_image(textures->enemy[enemy->texture], data, j * scene->block_size, i * scene->block_size);
+                load_image(textures->enemy[0], data, j * scene->block_size, i * scene->block_size);
             j++;
         }
         i++;
@@ -77,7 +76,7 @@ void render_dynamic(t_data data)
         while (j < scene->cols)
         {
             char block = scene->map[i][j];
-            if(block == '-' || block == 'P' || block == 'X')
+            if(block == '-' || block == 'P')
                 load_image(textures->floor, data, j * scene->block_size, i * scene->block_size);
                 
             if (block == '-')
@@ -85,9 +84,6 @@ void render_dynamic(t_data data)
             
             if (block == 'P')
                 load_image(textures->player[player->texture + temp], data, j * scene->block_size, i * scene->block_size);
-            
-            if (block == 'X')
-                load_image(textures->enemy[enemy->texture], data, j * scene->block_size, i * scene->block_size);
             
             if(block == 'B'){
                 load_image(textures->explosion[scene->boom_animation], data, j * scene->block_size, i * scene->block_size);
@@ -110,15 +106,22 @@ void render_moves(t_data data)
     const t_player *player = data.player;
     
     char *moves = ft_itoa(player->moves);
+    char *bombs = ft_itoa(player->bombs);
     int cols = 4;
 
     while(cols--){
         load_image(textures->wall, data, cols*scene->block_size, 0);
+        load_image(textures->wall, data, (scene->cols - cols)*scene->block_size, 0);
     }
 
     mlx_string_put(data.mlx, data.win, 5, 5, 0x00f59e0b, "Moves:");
     mlx_string_put(data.mlx, data.win, 70, 5, 0x00f59e0b, moves);
+
+    mlx_string_put(data.mlx, data.win, data.width - 100, 5, 0x00f59e0b, "Bombs:");
+    mlx_string_put(data.mlx, data.win, data.width - 25, 5, 0x00f59e0b, bombs);
+    
     free(moves);
+    free(bombs);
 }
 
 void re_render(t_data *data)
