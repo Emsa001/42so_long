@@ -1,58 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/19 14:53:48 by escura            #+#    #+#             */
-/*   Updated: 2024/01/22 20:39:47 by escura           ###   ########.fr       */
+/*   Created: 2024/01/22 19:43:51 by escura            #+#    #+#             */
+/*   Updated: 2024/01/22 19:44:21 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-void	free_player_map(t_scene *scene)
+void	print_player_map(const t_scene *scene)
 {
 	int	i;
+	int	j;
 
 	i = 0;
+	printf("\n");
 	while (i < scene->player_map_rows)
 	{
-		free(scene->player_map[i]);
+		j = 0;
+		while (j < scene->player_map_cols)
+		{
+			printf("%c ", scene->player_map[i][j]);
+			j++;
+		}
+		printf("\n");
 		i++;
 	}
-	free(scene->player_map);
+	printf("\n");
 }
 
-void	free_scene(t_scene *scene)
+void	print_full_map(const t_scene *scene)
 {
 	int	i;
+	int	j;
 
 	i = 0;
-	free_player_map(scene);
+	printf("\n");
 	while (i < scene->rows)
-		free(scene->map[i++]);
-	free(scene->map);
-	free(scene->map_string);
-	free(scene);
-}
-
-int	free_data(t_data *data)
-{
-	if (data->player != NULL)
-		free(data->player);
-	if (data->scene != NULL)
-		free_scene(data->scene);
-	if (data->textures != NULL)
-		free(data->textures);
-	if (data->win)
 	{
-		mlx_destroy_window(data->mlx, data->win);
-		exit(0);
+		j = 0;
+		while (j < scene->cols)
+		{
+			printf("%c", scene->map[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
 	}
-	else
-		ft_printf("Error opening window\n");
-	exit(0);
-	return (0);
+	printf("\n");
 }

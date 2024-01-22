@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 14:17:22 by escura            #+#    #+#             */
-/*   Updated: 2024/01/22 19:33:28 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/22 19:50:19 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	main(int nb, char **args)
 	// }
 
 	init_data(&data, map);
+
 	mlx_hook(data.win, 2, 0, key_hook, &data);
     mlx_hook(data.win, 17, 0, free_data, &data);
 	mlx_mouse_hook(data.win, mouse_hook, &data);

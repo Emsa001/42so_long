@@ -21,6 +21,8 @@
         "__node_handle": "c",
         "fcntl.h": "c",
         "system_error": "c",
-        "so_long_bonus.h": "c"
+        "so_long_bonus.h": "c",
+        "limits.h": "c",
+        "data.h": "c"
     }
 }

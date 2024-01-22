@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 13:46:56 by escura            #+#    #+#             */
-/*   Updated: 2024/01/22 19:26:00 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/22 20:01:04 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_textures
 	char		*empty;
 	char		*exit[2];
 	char		*player[8];
-	char		*collectible[2];
+	char		*collectible;
 	char		*message[2];
 }				t_textures;
 
@@ -51,7 +51,6 @@ typedef struct s_scene
 	int			collectibles;
 
 	int			block_size;
-	int			**rerender;
 }				t_scene;
 
 typedef struct s_player

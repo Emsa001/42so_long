@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 15:26:31 by escura            #+#    #+#             */
-/*   Updated: 2024/01/22 19:31:22 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/22 19:40:01 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void render_player_view(t_data data, int i)
                     load_image(textures->floor, data, j * scene->block_size, i * scene->block_size);
 
                 if (block == 'C')
-                    load_image(textures->collectible[0], data, j * scene->block_size, i * scene->block_size);
+                    load_image(textures->collectible, data, j * scene->block_size, i * scene->block_size);
                 else if (block == 'E')
                     load_image(textures->exit[scene->exit_texture], data, j * scene->block_size, i * scene->block_size);
                 else if (block == 'P')
