@@ -20,6 +20,7 @@
         "libft.h": "c",
         "__node_handle": "c",
         "fcntl.h": "c",
-        "system_error": "c"
+        "system_error": "c",
+        "so_long_bonus.h": "c"
     }
 }

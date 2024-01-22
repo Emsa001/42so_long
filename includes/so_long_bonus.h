@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 13:46:56 by escura            #+#    #+#             */
-/*   Updated: 2024/01/22 19:26:00 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/22 15:03:06 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include "./get_next_line/get_next_line.h"
-# include "./ft_printf/src/ft_printf.h"
 # include "./libft/libft.h"
 # include "./minilibx/mlx.h"
 # include <fcntl.h>
@@ -29,26 +28,24 @@ typedef struct s_textures
 {
 	char		*wall;
 	char		*floor;
-	char		*empty;
 	char		*exit[2];
-	char		*player[8];
+	char		*player[12];
+	char		*enemy[8];
 	char		*collectible[2];
-	char		*message[2];
+	char		*explosion[5];
+	char 		*message[2];
 }				t_textures;
 
 typedef struct s_scene
 {
 	char		**map;
-	char		**player_map;
 	char		*map_string;
 	int			cols;
 	int			rows;
-	int			player_map_cols;
-	int			player_map_rows;
-	char		*text;
 
 	int			exit_texture;
 	int			collectibles;
+	int			boom_animation;
 
 	int			block_size;
 	int			**rerender;
@@ -60,9 +57,26 @@ typedef struct s_player
 	int			y;
 
 	int			moves;
+	int			alive;
+	int			attack;
 	int			direction;
 	int			texture;
+	int			bombs;
 }				t_player;
+
+typedef struct s_enemy
+{
+	int			x;
+	int			y;
+
+	int			prev_x;
+	int			prev_y;
+
+	int			alive;
+	int			direction;
+
+	int			texture;
+}				t_enemy;
 
 typedef struct s_data
 {
@@ -74,6 +88,7 @@ typedef struct s_data
 	t_scene		*scene;
 	t_player	*player;
 
+	t_enemy		**enemy;
 	t_textures	*textures;
 
 	int			game_over;
@@ -104,8 +119,7 @@ int				count(char *map, char c);
 
 char			*read_map(char *path);
 void			convert_map(char *map_str, char ***map, int *rows, int *cols);
-void			print_full_map(const t_scene *scene);
-void			print_player_map(const t_scene *scene);
+void			print_map(const t_scene *scene);
 int				free_data(t_data *data);
 void			render_dynamic(t_data data);
 void			re_render(t_data *data);
@@ -113,16 +127,13 @@ void			re_render(t_data *data);
 int				check_if_safe(t_data *data, int x, int y);
 int				check_objectives(t_data *data, int x, int y);
 
+int				enemy_move(t_data *data, t_enemy *enemy);
 void			kill_player(t_data *data);
 void			init_enemy(t_data *data);
 void			kill_enemy(t_data *data, int x, int y);
 int				find_player(const t_scene *scene);
 void			boom(t_data *data);
-void			set_player_map(t_data *data);
-void			render_player_view(t_data data, int i);
-void			free_player_map(t_scene *scene);
-void			re_render_down(t_data *data);
-void			animation_update(t_data data);
-void 			set_pixel_position(t_data *data, int *x, int *y, char c);
+void 			render_enemy(t_data *data, t_enemy *enemy);
+
 
 #endif

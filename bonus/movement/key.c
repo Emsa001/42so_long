@@ -6,11 +6,11 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 15:50:17 by escura            #+#    #+#             */
-/*   Updated: 2024/01/22 19:17:23 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/22 14:54:18 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long.h"
+#include "../../includes/so_long_bonus.h"
 
 int	key_hook(int keycode, t_data *data)
 {
@@ -27,33 +27,63 @@ int	key_hook(int keycode, t_data *data)
     int x = player->x;
     int y = player->y;
 
+	// d
 	if(keycode == 2){
         player->direction = 0;
         y++;
 	}	
 
+	// a
 	if(keycode == 0){
         player->direction = 1;
         y--;
 	}
 
-    if(keycode == 13)
+    // w
+    if(keycode == 13){
         x--;
+    }
 
-    if(keycode == 1)
+    // s
+    if(keycode == 1){
         x++;
+    }
 
-    if((x != player->x || y != player->y) && check_if_safe(data, x, y) && data->game_over == 0){
+    // space
+    if(keycode == 49){
+        if(player->attack == 1){
+            if(player->direction == 0)
+                kill_enemy(data,x,y + 1);
+            else
+                kill_enemy(data,x,y - 1);
+        }
+        else
+            show_text(data, "I need a sword to kill the goblin!\n");
+    }
+
+    // b
+    if(keycode == 11){
+        boom(data);
+        return -1;
+    }
+
+    int temp_x = player->x;
+    int temp_y = player->y;
+
+    if((x != temp_x || y != temp_y) && check_if_safe(data, x, y) && data->game_over == 0){
+        if(scene->rerender != NULL)
+            re_render(data);
+
         if(check_objectives(data,x,y) != 1)
             return (-1);
-
-        scene->map[player->x][player->y] = '0';
-        player->x = x;
-        player->y = y;
-        scene->map[x][y] = 'P';
+        if(player->alive == 1){
+            scene->map[player->x][player->y] = '-';
+            player->x = x;
+            player->y = y;
+            scene->map[x][y] = 'P';
+        }
         player->moves++;
-
-        render_player_view(*data,0);
+        render_dynamic(*data);
     }
         
 	return (-1);
