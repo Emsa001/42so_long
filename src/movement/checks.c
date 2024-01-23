@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 20:09:24 by escura            #+#    #+#             */
-/*   Updated: 2024/01/23 18:13:20 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/23 19:08:44 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	check_if_collectible(t_data *data, int x, int y)
 			scene->exit_texture = 1;
 		}
 		else
-			scene->text = ft_strdup("Great Job!");
+			scene->text = ft_strdup("Good Job!");
 	}
 }
 

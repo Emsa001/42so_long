@@ -1,3 +1,2 @@
-
 todo:
-    map validity check
+    bonus
