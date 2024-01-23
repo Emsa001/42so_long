@@ -6,12 +6,12 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 20:49:22 by escura            #+#    #+#             */
-/*   Updated: 2024/01/22 20:52:04 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/23 00:34:04 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
-#include "./data.h"
+#include "./alias.h"
 
 static void	init_player_map_vars_2(t_data *data, t_vars *vars)
 {

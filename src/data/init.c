@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:49:38 by escura            #+#    #+#             */
-/*   Updated: 2024/01/22 20:33:09 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/23 00:38:13 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	init_player(t_data *data)
 	t_player	*player;
 
 	data->player = (t_player *)ft_calloc(1, sizeof(t_player));
-	if (!data->player)
+	if (data->player == NULL)
 	{
 		ft_printf("Error: Failed to allocate memory for player\n");
 		exit(1);
@@ -35,7 +35,7 @@ void	init_map(t_data *data, char *map_string)
 	t_scene	*scene;
 
 	data->scene = (t_scene *)ft_calloc(1, sizeof(t_scene));
-	if (!data->scene)
+	if (data->scene == NULL)
 	{
 		ft_printf("Error: Failed to allocate memory for player\n");
 		exit(1);
@@ -61,7 +61,7 @@ void	init_textures(t_data *data)
 	t_textures	*textures;
 
 	data->textures = (t_textures *)ft_calloc(1, sizeof(t_textures));
-	if (!data->textures)
+	if (data->textures == NULL)
 	{
 		ft_printf("Failed to allocate memory for textures\n");
 		exit(1);

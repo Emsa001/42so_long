@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 16:44:49 by escura            #+#    #+#             */
-/*   Updated: 2024/01/22 14:54:26 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/22 22:51:05 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,22 +88,4 @@ int is_possible(char *map_str) {
     free(visited);
 
     return result;
-}
-
-int find_player(const t_scene *scene)
-{
-    int i = 0;
-    while (i < scene->rows)
-    {
-        int j = 0;
-        while (j < scene->cols)
-        {
-            if (scene->map[i][j] == 'P')
-                return 1;
-            j++;
-        }
-        i++;
-    }
-    return 0;
-
 }

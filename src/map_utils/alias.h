@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   data.h                                             :+:      :+:    :+:   */
+/*   alias.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/22 20:35:07 by escura            #+#    #+#             */
-/*   Updated: 2024/01/22 20:50:30 by escura           ###   ########.fr       */
+/*   Created: 2024/01/22 23:23:59 by escura            #+#    #+#             */
+/*   Updated: 2024/01/23 01:26:05 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 typedef struct s_vars
 {
-	int	rows;
-	int	cols;
-	int	start_x;
-	int	start_y;
-	int	end_x;
-	int	end_y;
-}		t_vars;
+	int		rows;
+	int		cols;
 
-typedef struct s_temp
+	char	**map;
+	int		**visited;
+
+	int		px;
+	int		py;
+}			t_vars;
+
+typedef struct s_readvars
 {
-	int		i;
-	int		j;
-	int		temp_x;
-	int		temp_y;
-}		t_temp;
+	char	*line;
+	char	*map;
+	char	*temp;
+	int		length;
+	int		errors;
+}			t_readvars;
 
-void	init_player_map_vars(t_data *data, t_vars *vars);
+int			is_possible(t_vars *vars);

@@ -6,15 +6,15 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 13:46:56 by escura            #+#    #+#             */
-/*   Updated: 2024/01/22 20:01:04 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/23 00:41:59 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "./get_next_line/get_next_line.h"
 # include "./ft_printf/src/ft_printf.h"
+# include "./get_next_line/get_next_line.h"
 # include "./libft/libft.h"
 # include "./minilibx/mlx.h"
 # include <fcntl.h>
@@ -98,7 +98,7 @@ void			update_map(t_data data);
 void			victory(t_data *data);
 void			show_text(t_data *data, char *message);
 void			init_data(t_data *data, char *map);
-int				is_possible(char *map_str);
+int				check_if_correct(char *map_str);
 int				count(char *map, char c);
 
 char			*read_map(char *path);
@@ -115,13 +115,15 @@ int				check_objectives(t_data *data, int x, int y);
 void			kill_player(t_data *data);
 void			init_enemy(t_data *data);
 void			kill_enemy(t_data *data, int x, int y);
-int				find_player(const t_scene *scene);
 void			boom(t_data *data);
 void			set_player_map(t_data *data);
 void			render_player_view(t_data data, int i);
 void			free_player_map(t_scene *scene);
 void			re_render_down(t_data *data);
 void			animation_update(t_data data);
-void 			set_pixel_position(t_data *data, int *x, int *y, char c);
+void			set_pixel_position(t_data *data, int *x, int *y, char c);
+void			announce(t_data *data, char *message);
+
+void			ft_error(char *msg);
 
 #endif

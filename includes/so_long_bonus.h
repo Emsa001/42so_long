@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 13:46:56 by escura            #+#    #+#             */
-/*   Updated: 2024/01/22 15:03:06 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/22 22:51:20 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,6 @@ int				enemy_move(t_data *data, t_enemy *enemy);
 void			kill_player(t_data *data);
 void			init_enemy(t_data *data);
 void			kill_enemy(t_data *data, int x, int y);
-int				find_player(const t_scene *scene);
 void			boom(t_data *data);
 void 			render_enemy(t_data *data, t_enemy *enemy);
 

@@ -1,5 +1,7 @@
 {
     "files.associations": {
+        "*.toml": "toml",
+        "*.yml": "yaml",
         "*.jsx": "javascriptreact",
         "__hash_table": "c",
         "__split_buffer": "c",
@@ -23,6 +25,9 @@
         "system_error": "c",
         "so_long_bonus.h": "c",
         "limits.h": "c",
-        "data.h": "c"
+        "data.h": "c",
+        "alias.h": "c",
+        "__locale": "c",
+        "__string": "c"
     }
 }
