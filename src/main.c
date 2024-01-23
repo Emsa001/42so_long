@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 14:17:22 by escura            #+#    #+#             */
-/*   Updated: 2024/01/23 15:58:51 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/23 18:15:41 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(int nb, char **args)
 	t_data	data;
 	char	*map;
 
-	if (args[1] == NULL)
+	if (args[1] == NULL || nb < 2)
 		map = read_map("./maps/labirynt2.ber");
 	else
 		map = read_map(args[1]);

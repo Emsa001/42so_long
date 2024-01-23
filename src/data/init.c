@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:49:38 by escura            #+#    #+#             */
-/*   Updated: 2024/01/23 00:38:13 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/23 18:04:25 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	init_player(t_data *data)
 	player->moves = 0;
 	player->direction = 0;
 	player->texture = 0;
+	player->texture_add = 0;
+	player->running = 0;
 	set_real_position(data, &player->x, &player->y, 'P');
 	set_player_map(data);
 }
@@ -56,6 +58,20 @@ void	init_map(t_data *data, char *map_string)
 		scene->player_map_cols = scene->cols;
 }
 
+void	init_player_textures(t_data *data)
+{
+	data->textures->player[0] = "./textures/player/right/idle_1.xpm";
+	data->textures->player[1] = "./textures/player/right/idle_2.xpm";
+	data->textures->player[2] = "./textures/player/right/idle_3.xpm";
+	data->textures->player[3] = "./textures/player/right/idle_4.xpm";
+	data->textures->player[4] = "./textures/player/right/run_1.xpm";
+	data->textures->player[5] = "./textures/player/left/idle_1.xpm";
+	data->textures->player[6] = "./textures/player/left/idle_2.xpm";
+	data->textures->player[7] = "./textures/player/left/idle_3.xpm";
+	data->textures->player[8] = "./textures/player/left/idle_4.xpm";
+	data->textures->player[9] = "./textures/player/left/run_1.xpm";
+}
+
 void	init_textures(t_data *data)
 {
 	t_textures	*textures;
@@ -72,17 +88,10 @@ void	init_textures(t_data *data)
 	textures->floor = "./textures/tiles/floor.xpm";
 	textures->exit[0] = "./textures/tiles/doors_closed.xpm";
 	textures->exit[1] = "./textures/tiles/doors_open.xpm";
-	textures->player[0] = "./textures/player/right/idle_1.xpm";
-	textures->player[1] = "./textures/player/right/idle_2.xpm";
-	textures->player[2] = "./textures/player/right/idle_3.xpm";
-	textures->player[3] = "./textures/player/right/idle_4.xpm";
-	textures->player[4] = "./textures/player/left/idle_1.xpm";
-	textures->player[5] = "./textures/player/left/idle_2.xpm";
-	textures->player[6] = "./textures/player/left/idle_3.xpm";
-	textures->player[7] = "./textures/player/left/idle_4.xpm";
 	textures->collectible = "./textures/items/potion.xpm";
 	textures->message[0] = "./textures/ui/message.xpm";
 	textures->message[1] = "./textures/ui/broadcast.xpm";
+	init_player_textures(data);
 }
 
 void	init_data(t_data *data, char *map_string)

@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:38:25 by escura            #+#    #+#             */
-/*   Updated: 2024/01/22 23:45:50 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/23 18:14:58 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	announce(t_data *data, char *message)
 		* scene->block_size);
 	load_image(textures->message[1], *data, center_x - 60, center_y - 20);
 	mlx_string_put(data->mlx, data->win, center_x, center_y, 0x000000,
-		"You Win");
+		message);
 }
 
 void	load_image(char *path, t_data data, int x, int y)

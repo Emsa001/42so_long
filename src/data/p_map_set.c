@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:14:29 by escura            #+#    #+#             */
-/*   Updated: 2024/01/23 00:05:02 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/23 18:12:32 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,6 @@ static void	check_errors(t_data *data, t_vars *vars, t_temp *temp_vars)
 
 static void	set_player_map_2(t_data *data, t_vars *vars)
 {
-	int		i;
-	int		j;
-	int		temp_x;
-	int		temp_y;
 	t_temp	*temp_vars;
 
 	temp_vars = (t_temp *)ft_calloc(1, sizeof(t_temp));

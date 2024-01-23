@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 22:15:02 by escura            #+#    #+#             */
-/*   Updated: 2024/01/22 22:37:55 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/23 18:13:50 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	render_moves(t_data data)
 
 void	animation_update(t_data data)
 {
-	const t_scene		*scene = data.scene;
 	const t_textures	*textures = data.textures;
 	const t_player		*player = data.player;
 	int					x;
@@ -36,6 +35,6 @@ void	animation_update(t_data data)
 
 	set_pixel_position(&data, &x, &y, 'P');
 	load_image(textures->floor, data, x, y);
-	load_image(textures->player[player->texture + player->direction * 4], data,
+	load_image(textures->player[player->texture + player->texture_add], data,
 		x, y);
 }

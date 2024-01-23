@@ -6,7 +6,7 @@
 #    By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/30 13:49:31 by escura            #+#    #+#              #
-#    Updated: 2024/01/22 19:38:30 by escura           ###   ########.fr        #
+#    Updated: 2024/01/23 18:11:41 by escura           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ NC=\033[0m # No Color
 
 # Compiler and Flags
 CC = cc
-CFLAGS = -Iincludes/minilibx
+CFLAGS = -Wall -Werror -Wextra -Iincludes/minilibx
 LDFLAGS = -Lincludes/minilibx -lmlx -framework OpenGL -framework AppKit
 
 # Source Files and Object Files

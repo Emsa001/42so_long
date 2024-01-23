@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 13:46:56 by escura            #+#    #+#             */
-/*   Updated: 2024/01/23 00:41:59 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/23 18:14:53 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_textures
 	char		*floor;
 	char		*empty;
 	char		*exit[2];
-	char		*player[8];
+	char		*player[10];
 	char		*collectible;
 	char		*message[2];
 }				t_textures;
@@ -61,6 +61,8 @@ typedef struct s_player
 	int			moves;
 	int			direction;
 	int			texture;
+	int			texture_add;
+	int			running;
 }				t_player;
 
 typedef struct s_data

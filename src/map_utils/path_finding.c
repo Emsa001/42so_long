@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 00:13:21 by escura            #+#    #+#             */
-/*   Updated: 2024/01/23 16:19:38 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/23 18:12:55 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,25 +52,6 @@ static void	is_possible_2(t_vars *vars)
 	vars->static_tiles[0] = '1';
 	vars->static_tiles[1] = ' ';
 	vars->static_tiles[2] = ' ';
-}
-
-static void	set_collectibles(t_vars *vars)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < vars->rows)
-	{
-		j = 0;
-		while (j < vars->cols)
-		{
-			if (vars->map[i][j] == 'V')
-				vars->map[i][j] = 'C';
-			j++;
-		}
-		i++;
-	}
 }
 
 int	is_possible(t_vars *vars)

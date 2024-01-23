@@ -6,16 +6,28 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 15:26:31 by escura            #+#    #+#             */
-/*   Updated: 2024/01/22 23:13:37 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/23 18:14:14 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-void	render_images(t_data data, int i, int j)
+static int	set_player_texture(t_data data)
+{
+	const t_player	*player = data.player;
+	int				player_texture;
+
+	player_texture = player->texture + player->texture_add;
+	if (player->running && player->direction == 0)
+		player_texture = 4;
+	else if (player->running && player->direction == 1)
+		player_texture = 9;
+	return (player_texture);
+}
+
+static void	render_images(t_data data, int i, int j)
 {
 	const t_scene	*scene = data.scene;
-	const t_player	*player = data.player;
 	const char		block = scene->player_map[i][j];
 
 	if (block == ' ')
@@ -34,14 +46,13 @@ void	render_images(t_data data, int i, int j)
 		load_image(data.textures->exit[scene->exit_texture], data, j
 			* scene->block_size, i * scene->block_size);
 	else if (block == 'P')
-		load_image(data.textures->player[player->texture + player->direction
-			* 4], data, j * scene->block_size, i * scene->block_size);
+		load_image(data.textures->player[set_player_texture(data)], data, j
+			* scene->block_size, i * scene->block_size);
 }
 
 void	render_player_view(t_data data, int i)
 {
 	const t_scene	*scene = data.scene;
-	const t_player	*player = data.player;
 	const int		temp_i = i;
 	int				j;
 

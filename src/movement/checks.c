@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 20:09:24 by escura            #+#    #+#             */
-/*   Updated: 2024/01/22 22:54:10 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/23 18:13:20 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,12 @@ static void	check_if_collectible(t_data *data, int x, int y)
 
 int	check_objectives(t_data *data, int x, int y)
 {
-	const t_textures	*textures = data->textures;
-	t_scene				*scene;
-	t_player			*player;
-
-	scene = data->scene;
-	if (scene->map[x][y] == 'E')
+	if (data->scene->map[x][y] == 'E')
 	{
-		if (scene->collectibles == 0)
+		if (data->scene->collectibles == 0)
 			victory(data);
 		else
-			scene->text = ft_strdup("I cannot leave any potions");
+			data->scene->text = ft_strdup("I cannot leave any potions");
 		return (0);
 	}
 	check_if_collectible(data, x, y);
