@@ -6,48 +6,26 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 00:13:21 by escura            #+#    #+#             */
-/*   Updated: 2024/01/23 00:54:01 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/23 16:19:38 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 #include "./alias.h"
 
-static void	free_memory(t_vars *vars)
+static int	dfs(t_vars *vars, int x, int y, char to_find)
 {
-	int	i;
-
-	i = 0;
-	while (i < vars->rows)
-	{
-		free(vars->map[i]);
-		free(vars->visited[i]);
-		i++;
-	}
-	free(vars->map);
-	free(vars->visited);
-	free(vars);
-}
-
-static int	dfs(t_vars *vars, int x, int y)
-{
-	int		**visited;
-	int		rows;
-	int		cols;
-	char	**map;
-
-	visited = vars->visited;
-	rows = vars->rows;
-	cols = vars->cols;
-	map = vars->map;
-	if (x < 0 || y < 0 || x >= rows || y >= cols || visited[x][y]
-		|| map[x][y] == '1' || map[x][y] == ' ')
+	if (check_if_can_walk(vars, x, y) == 0)
 		return (0);
-	if (map[x][y] == 'E')
+	if (vars->map[x][y] == to_find)
+	{
+		if (to_find == 'C')
+			vars->map[x][y] = 'V';
 		return (1);
-	visited[x][y] = 1;
-	return (dfs(vars, x - 1, y) || dfs(vars, x + 1, y) || dfs(vars, x, y - 1)
-		|| dfs(vars, x, y + 1));
+	}
+	vars->visited[x][y] = 1;
+	return (dfs(vars, x - 1, y, to_find) || dfs(vars, x + 1, y, to_find)
+		|| dfs(vars, x, y - 1, to_find) || dfs(vars, x, y + 1, to_find));
 }
 
 static void	is_possible_2(t_vars *vars)
@@ -71,12 +49,33 @@ static void	is_possible_2(t_vars *vars)
 		}
 		i++;
 	}
+	vars->static_tiles[0] = '1';
+	vars->static_tiles[1] = ' ';
+	vars->static_tiles[2] = ' ';
+}
+
+static void	set_collectibles(t_vars *vars)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < vars->rows)
+	{
+		j = 0;
+		while (j < vars->cols)
+		{
+			if (vars->map[i][j] == 'V')
+				vars->map[i][j] = 'C';
+			j++;
+		}
+		i++;
+	}
 }
 
 int	is_possible(t_vars *vars)
 {
 	int	i;
-	int	result;
 
 	vars->visited = (int **)ft_calloc(1, vars->rows * sizeof(int *));
 	if (vars->visited == NULL)
@@ -86,13 +85,19 @@ int	is_possible(t_vars *vars)
 	{
 		vars->visited[i] = ft_calloc(vars->cols, sizeof(int));
 		if (vars->visited[i++] == NULL)
-		{
-			free_memory(vars);
-			return (0);
-		}
+			return (free_memory(vars));
 	}
 	is_possible_2(vars);
-	result = dfs(vars, vars->px, vars->py) == 1;
+	if (dfs(vars, vars->px, vars->py, 'E') == 0)
+		return (free_memory(vars));
+	clear_visited(vars);
+	vars->static_tiles[1] = 'E';
+	while (count_converted(vars, 'C') > 0)
+	{
+		clear_visited(vars);
+		if (dfs(vars, vars->px, vars->py, 'C') == 0)
+			return (free_memory(vars));
+	}
 	free_memory(vars);
-	return (result);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:59:08 by escura            #+#    #+#             */
-/*   Updated: 2024/01/23 01:47:04 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/23 15:20:21 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,27 +27,6 @@ static void	count_data(char *map)
 		ft_printf("Invalid map\n");
 		free(map);
 		exit(1);
-	}
-}
-
-static void	check_for_border_and_size(t_readvars *r_vars)
-{
-	char	l1;
-	char	l2;
-
-	if (r_vars->line != NULL)
-	{
-		if (ft_strlen(r_vars->line) == 1)
-			ft_error("Invalid map");
-		l1 = r_vars->line[0];
-		l2 = r_vars->line[r_vars->length - 1];
-		if(l2 == '\n')
-			l2 = r_vars->line[r_vars->length - 2];
-		printf("line: |%s|\n", r_vars->line);
-		if (ft_strlen(r_vars->line) != r_vars->length)
-			r_vars->errors++;
-		else if (l1 != '1' || l2 != '1')
-			r_vars->errors++;
 	}
 }
 
@@ -81,7 +60,6 @@ char	*read_map(char *path)
 			strjoin_error(r_vars->temp, r_vars->line);
 		free(r_vars->temp);
 		free(r_vars->line);
-		check_for_border_and_size(r_vars);
 		r_vars->line = get_next_line(fd);
 	}
 	free(r_vars->line);
