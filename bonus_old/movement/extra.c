@@ -6,11 +6,11 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 18:02:35 by escura            #+#    #+#             */
-/*   Updated: 2024/01/22 14:54:19 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/24 14:17:03 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long_bonus.h"
+#include "../../includes/so_long_bonus_old.h"
 
 void boom(t_data *data)
 {

@@ -6,11 +6,11 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 19:25:17 by escura            #+#    #+#             */
-/*   Updated: 2024/01/22 14:54:34 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/24 19:30:43 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long_bonus.h"
+#include "../../includes/so_long_bonus_old.h"
 
 void go_up(t_data *data, t_enemy *enemy){
     t_scene *scene = data->scene;
@@ -57,7 +57,7 @@ void go_down(t_data *data, t_enemy *enemy){
 
 }
 
-int enemy_move(t_data *data, t_enemy *enemy)
+int enemy_move(t_data *data, t_player *enemy)
 {
     const t_textures *textures = data->textures;
     t_scene *scene = data->scene;
@@ -84,7 +84,7 @@ int enemy_move(t_data *data, t_enemy *enemy)
     return -1;
 }
 
-void render_enemy(t_data *data, t_enemy *enemy)
+void render_enemy(t_data *data, t_player *enemy)
 {
     const t_textures *textures = data->textures;
     t_scene *scene = data->scene;

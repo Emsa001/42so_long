@@ -6,11 +6,11 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 16:44:49 by escura            #+#    #+#             */
-/*   Updated: 2024/01/22 22:51:05 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/24 14:16:59 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long_bonus.h"
+#include "../../includes/so_long_bonus_old.h"
 #include <stdbool.h>
 
 bool dfs(char **map, int x, int y, bool **visited, int rows, int cols) {

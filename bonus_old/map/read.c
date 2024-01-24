@@ -6,11 +6,11 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:59:08 by escura            #+#    #+#             */
-/*   Updated: 2024/01/22 14:54:27 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/24 14:17:01 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long_bonus.h"
+#include "../../includes/so_long_bonus_old.h"
 
 int count(char *map, char c)
 {

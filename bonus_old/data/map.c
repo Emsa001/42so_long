@@ -6,11 +6,11 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:14:29 by escura            #+#    #+#             */
-/*   Updated: 2024/01/22 14:54:44 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/24 14:16:51 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long_bonus.h"
+#include "../../includes/so_long_bonus_old.h"
 
 void set_real_position(t_data *data, int *x_pos, int *y_pos, char c)
 {

@@ -6,7 +6,7 @@
 #    By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/30 13:49:31 by escura            #+#    #+#              #
-#    Updated: 2024/01/23 18:11:41 by escura           ###   ########.fr        #
+#    Updated: 2024/01/24 15:10:42 by escura           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,11 +21,11 @@ NC=\033[0m # No Color
 
 # Compiler and Flags
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -Iincludes/minilibx
+CFLAGS = -Iincludes/minilibx
 LDFLAGS = -Lincludes/minilibx -lmlx -framework OpenGL -framework AppKit
 
 # Source Files and Object Files
-SRC_DIR = src
+SRC_DIR = bonus
 BONUS_DIR = bonus
 INCLUDES_DIR = includes
 GET_NEXT_LINE = ./includes/get_next_line/get_next_line.c

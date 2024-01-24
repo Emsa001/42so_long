@@ -5,19 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/20 20:37:43 by escura            #+#    #+#             */
-/*   Updated: 2024/01/22 14:54:32 by escura           ###   ########.fr       */
+/*   Created: 2024/01/24 15:30:55 by escura            #+#    #+#             */
+/*   Updated: 2024/01/24 20:46:33 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long_bonus.h"
 
-t_enemy *find_enemy(t_data *data, int x, int y)
+void kill_player(t_data *data)
+{
+    data->player->alive = 0;
+    data->player->texture = 0;
+    data->player->texture_add = 10;
+    data->scene->text = ft_strdup("You died!");
+}
+
+t_player *find_enemy(t_data *data, int x, int y)
 {
     int i = 0;
-    int enemies = count(data->scene->map_string, 'X');
-    while(i < enemies){
-        t_enemy *enemy = data->enemy[i++];
+    while(i < data->scene->enemies_alive){
+        t_player *enemy = data->enemy[i++];
         if(enemy->x == x && enemy->y == y)
             return enemy;
     }
@@ -27,7 +34,7 @@ t_enemy *find_enemy(t_data *data, int x, int y)
 void kill_enemy(t_data *data, int x, int y)
 {
     t_player *player = data->player;
-    t_enemy *enemy = find_enemy(data, x, y);
+    t_player *enemy = find_enemy(data, x, y);
     if(enemy == NULL)
         return;
     t_scene *scene = data->scene;
@@ -37,9 +44,7 @@ void kill_enemy(t_data *data, int x, int y)
     scene->map[x][y] = 'x';
 
     enemy->texture = 0;
+    enemy->texture_add = 4;
     enemy->alive = 0;
-    player->attack = 0;
-    show_text(data, "I killed the goblin!\n");
-    render_dynamic(*data);
-    // init_enemy(data);    
+    data->scene->text = ft_strdup("You killed an enemy!");
 }

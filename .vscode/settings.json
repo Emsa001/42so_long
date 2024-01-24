@@ -28,6 +28,8 @@
         "data.h": "c",
         "alias.h": "c",
         "__locale": "c",
-        "__string": "c"
+        "__string": "c",
+        "stdio.h": "c",
+        "so_long_bonus_old.h": "c"
     }
 }
