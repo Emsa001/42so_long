@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 19:43:51 by escura            #+#    #+#             */
-/*   Updated: 2024/01/22 22:52:12 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/24 14:10:07 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,19 @@ void	print_player_map(const t_scene *scene)
 	int	j;
 
 	i = 0;
-	printf("\n");
+	ft_printf("\n");
 	while (i < scene->player_map_rows)
 	{
 		j = 0;
 		while (j < scene->player_map_cols)
 		{
-			printf("%c ", scene->player_map[i][j]);
+			ft_printf("%c ", scene->player_map[i][j]);
 			j++;
 		}
-		printf("\n");
+		ft_printf("\n");
 		i++;
 	}
-	printf("\n");
+	ft_printf("\n");
 }
 
 void	print_full_map(const t_scene *scene)
@@ -39,17 +39,17 @@ void	print_full_map(const t_scene *scene)
 	int	j;
 
 	i = 0;
-	printf("\n");
+	ft_printf("\n");
 	while (i < scene->rows)
 	{
 		j = 0;
 		while (j < scene->cols)
 		{
-			printf("%c", scene->map[i][j]);
+			ft_printf("%c", scene->map[i][j]);
 			j++;
 		}
-		printf("\n");
+		ft_printf("\n");
 		i++;
 	}
-	printf("\n");
+	ft_printf("\n");
 }

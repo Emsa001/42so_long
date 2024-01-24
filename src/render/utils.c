@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:38:25 by escura            #+#    #+#             */
-/*   Updated: 2024/01/23 18:14:58 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/24 14:10:13 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	load_image(char *path, t_data data, int x, int y)
 	img = mlx_xpm_file_to_image(data.mlx, path, &img_width, &img_height);
 	if (img == NULL)
 	{
-		printf("Error: failed to load image: %s\n", path);
+		ft_printf("Error: failed to load image: %s\n", path);
 		free_data(&data);
 	}
 	mlx_put_image_to_window(data.mlx, data.win, img, x, y);

@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 22:15:02 by escura            #+#    #+#             */
-/*   Updated: 2024/01/23 19:16:15 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/24 13:54:30 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,21 @@ void	render_moves(t_data data)
 	char			*collectibles;
 
 	moves = ft_itoa(player->moves);
-	collectibles = ft_itoa(scene->collectibles);
 	load_image(data.textures->message[0], data, 1, 1);
 	mlx_string_put(data.mlx, data.win, 20, 15, 0x00f59e0b, "MOVES:");
 	mlx_string_put(data.mlx, data.win, 80, 15, 0x00f59e0b, moves);
-	load_image(data.textures->message[0], data, data.width - 151, 1);
-	mlx_string_put(data.mlx, data.win, data.width - 130, 15, 0x00f59e0b,
-		"POTIONS:");
-	mlx_string_put(data.mlx, data.win, data.width - 50, 15, 0x00f59e0b,
-		collectibles);
 	ft_printf("Moves: %s\n", moves);
 	free(moves);
-	free(collectibles);
+	if (data.width >= 250)
+	{
+		collectibles = ft_itoa(scene->collectibles);
+		load_image(data.textures->message[0], data, data.width - 151, 1);
+		mlx_string_put(data.mlx, data.win, data.width - 130, 15, 0x00f59e0b,
+			"POTIONS:");
+		mlx_string_put(data.mlx, data.win, data.width - 50, 15, 0x00f59e0b,
+			collectibles);
+		free(collectibles);
+	}
 }
 
 void	animation_update(t_data data)

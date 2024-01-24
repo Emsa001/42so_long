@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 14:17:22 by escura            #+#    #+#             */
-/*   Updated: 2024/01/23 18:15:41 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/24 14:03:05 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int	main(int nb, char **args)
 	init_data(&data, map);
 	mlx_hook(data.win, 2, 0, key_hook, &data);
 	mlx_hook(data.win, 17, 0, free_data, &data);
-	mlx_mouse_hook(data.win, mouse_hook, &data);
 	mlx_loop_hook(data.mlx, render_next_frame, &data);
 	render_player_view(data, 0);
 	mlx_loop(data.mlx);
