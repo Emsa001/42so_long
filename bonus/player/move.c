@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 15:50:17 by escura            #+#    #+#             */
-/*   Updated: 2024/01/24 19:34:09 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/25 17:07:24 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,11 @@ static void	player_controls(int keycode, t_data *data, int *x, int *y)
 		(*x)--;
 	else if (keycode == 1)
 		(*x)++;
-	else if(keycode == 49)
+	else if (keycode == 49)
+	{
 		spawn_bomb(data, *x, *y);
+		return ;
+	}
 	player->running = 1;
 }
 
@@ -46,8 +49,8 @@ static void	move_player_hook(int keycode, t_data *data)
 
 	x = player->x;
 	y = player->y;
-	if(player->alive == 0)
-		return;
+	if (player->alive == 0)
+		return ;
 	player_controls(keycode, data, &x, &y);
 	if ((x != player->x || y != player->y) && check_if_safe(data, x, y)
 		&& data->game_over == 0)

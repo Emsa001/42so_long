@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 13:46:56 by escura            #+#    #+#             */
-/*   Updated: 2024/01/24 20:49:01 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/25 18:19:09 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_textures
 	char		*exit[2];
 	char		*enemy[4];
 	char		*player[14];
+	char		*bomb[5];
 	char		*explosion[5];
 	char		*collectible;
 	char		*message[2];
@@ -134,7 +135,8 @@ void			ft_error(char *msg);
 
 void			spawn_enemies(t_data *data);
 void			render_enemies(t_data *data);
-void			render_enemy(t_data *data, t_player *enemy);
+void			render_enemy_2(t_data *data, t_player *enemy);
+void			render_enemy(t_data *data, int x, int y);
 int				move_enemy(t_data *data, t_player *enemy);
 void			move_enemies(t_data *data);
 void			kill_enemy(t_data *data, int x, int y);
@@ -143,5 +145,6 @@ void			init_bombs(t_data *data);
 void			spawn_bomb(t_data *data, int x, int y);
 void			explode_bombs(t_data *data);
 int				rnd(int min, int max);
+void			init_enemies(t_data *data);
 
 #endif

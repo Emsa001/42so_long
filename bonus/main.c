@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 14:17:22 by escura            #+#    #+#             */
-/*   Updated: 2024/01/24 20:43:32 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/25 17:55:19 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,19 @@ int	render_next_frame(t_data *data)
 	t_player	*player;
 
 	player = data->player;
-	if(player->alive == 0 && player->texture == 3)
+	if (player->alive == 0 && player->texture == 3)
 		data->game_over = 1;
 	if (data->game_over == 1)
 		return (-1);
 	if (data->scene->text != NULL)
 		show_text(data, data->scene->text);
-
 	if (data->frame_update == 1000 || data->frame_update == 500)
 	{
-		if(data->scene->enemies_alive > 0 && player->alive == 1)
+		if (data->scene->enemies_alive > 0 && player->alive == 1)
 			move_enemies(data);
-		if(data->frame_update == 1000)
+		if (data->frame_update == 1000)
 			animation_update(*data);
 	}
-	
 	if (data->frame_update < 2000)
 	{
 		data->frame_update++;

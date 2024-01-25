@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 20:09:24 by escura            #+#    #+#             */
-/*   Updated: 2024/01/24 19:07:27 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/25 17:51:26 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	check_if_collectible(t_data *data, int x, int y)
 
 int	check_objectives(t_data *data, int x, int y)
 {
-	if(data->scene->map[x][y] == 'X')
+	if (data->scene->map[x][y] == 'X')
 	{
 		kill_player(data);
 		return (0);

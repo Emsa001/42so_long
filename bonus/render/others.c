@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 22:15:02 by escura            #+#    #+#             */
-/*   Updated: 2024/01/24 20:44:48 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/25 17:49:37 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,16 @@ void	animation_update(t_data data)
 	int					x;
 	int					y;
 
+	x = data.player->y * data.scene->block_size;
+	y = data.player->x * data.scene->block_size;
 	player = data.player;
 	if (player->texture >= 3 && player->alive == 1)
 		player->texture = 0;
 	else
 		player->texture++;
+	set_pixel_position(&data, &x, &y, 'P');
 	if (data.scene->boom_animation != -1 && data.scene->boom_animation < 4)
 		boom_animation(&data);
-	set_pixel_position(&data, &x, &y, 'P');
 	load_image(textures->floor, data, x, y);
 	load_image(textures->player[player->texture + player->texture_add], data, x,
 		y);

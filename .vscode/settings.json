@@ -30,6 +30,7 @@
         "__locale": "c",
         "__string": "c",
         "stdio.h": "c",
-        "so_long_bonus_old.h": "c"
+        "so_long_bonus_old.h": "c",
+        "locale": "c"
     }
 }

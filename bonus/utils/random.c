@@ -6,13 +6,13 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 14:35:09 by escura            #+#    #+#             */
-/*   Updated: 2024/01/24 14:35:24 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/25 17:49:18 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long_bonus.h"
 
-int rnd(int min, int max)
+int	rnd(int min, int max)
 {
-    return (rand() % (max - min + 1) + min);
+	return (rand() % (max - min + 1) + min);
 }
