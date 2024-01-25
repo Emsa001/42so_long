@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 14:17:22 by escura            #+#    #+#             */
-/*   Updated: 2024/01/24 14:03:05 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/25 19:51:09 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,15 @@ int	main(int nb, char **args)
 	char	*map;
 
 	if (args[1] == NULL || nb < 2)
-		map = read_map("./maps/labirynt2.ber");
+	{
+		ft_printf("Missing map :(\n");
+		return (0);
+	}
 	else
 		map = read_map(args[1]);
 	if (check_if_correct(map) == 0)
 	{
-		ft_printf("\nError with map. Possible Problems:\n");
-		ft_printf("- Invalid Path\n- Memory allocation (unlikely)\n\n");
+		ft_printf("Map Error\n");
 		free(map);
 		exit(1);
 	}

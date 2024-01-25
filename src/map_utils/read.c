@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:59:08 by escura            #+#    #+#             */
-/*   Updated: 2024/01/23 15:20:21 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/25 19:51:19 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	*read_map(char *path)
 	}
 	free(r_vars->line);
 	if (r_vars->errors > 0)
-		ft_error("Invalid map");
+		ft_error("Map Error");
 	count_data(r_vars->map);
 	temp = r_vars->map;
 	free(r_vars);

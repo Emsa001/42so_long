@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 14:17:22 by escura            #+#    #+#             */
-/*   Updated: 2024/01/25 17:55:19 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/25 19:15:13 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ int	main(int nb, char **args)
 	char	*map;
 
 	if (args[1] == NULL || nb < 2)
-		map = read_map("./maps/example_1.ber");
+	{
+		ft_printf("Missing map :(\n");
+		return (0);
+	}
 	else
 		map = read_map(args[1]);
 	if (check_if_correct(map) == 0)

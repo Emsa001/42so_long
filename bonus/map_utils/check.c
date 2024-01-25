@@ -6,11 +6,11 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 16:44:49 by escura            #+#    #+#             */
-/*   Updated: 2024/01/24 14:14:19 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/25 20:05:31 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long_bonus.h"
+#include "../../includes/so_long.h"
 #include "./alias.h"
 
 static int	check_tiles(char tile)
@@ -27,17 +27,20 @@ static int	check_grid(char **map, int rows)
 	const int	length = ft_strlen(map[0]);
 
 	i = 0;
-	j = 0;
 	while (i < rows)
 	{
-		if (map[i][j] != '1')
-			return (0);
-		while (map[i][j] != '\0')
-			if (check_tiles(map[i][j++]) == 0)
-				return (0);
-		if (map[i][j - 1] != '1' || j != length)
-			return (0);
 		j = 0;
+		while (j < length)
+		{
+			if ((i == 0 || i == rows - 1 || j == 0 || j == length - 1)
+				&& map[i][j] != '1')
+				return (0);
+			if (map[i][j] != '\0' && check_tiles(map[i][j]) == 0)
+				return (0);
+			j++;
+		}
+		if (map[i][j - 1] != '1')
+			return (0);
 		i++;
 	}
 	return (1);

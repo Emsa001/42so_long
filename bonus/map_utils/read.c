@@ -6,11 +6,11 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:59:08 by escura            #+#    #+#             */
-/*   Updated: 2024/01/24 14:14:31 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/25 20:05:35 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long_bonus.h"
+#include "../../includes/so_long.h"
 #include "./alias.h"
 
 static void	strjoin_error(char *map, char *line)
@@ -64,7 +64,7 @@ char	*read_map(char *path)
 	}
 	free(r_vars->line);
 	if (r_vars->errors > 0)
-		ft_error("Invalid map");
+		ft_error("Map Error");
 	count_data(r_vars->map);
 	temp = r_vars->map;
 	free(r_vars);
