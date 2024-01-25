@@ -64,13 +64,15 @@ Maze.prototype.removeWalls = function(percentage) {
         let y = Math.floor(Math.random() * (this.width - 2)) + 1;
 
         if (this.grid[x][y] === '1') {
-            this.grid[x][y] = '0';
+            this.grid[x][y] = Math.random() < 0.3 ? 'C' : '0';
             wallsToRemove--;
         }
     }
 };
 
-let size = process.argv[2] || 21; 
-let maze = new Maze(size, size);
-maze.removeWalls(20);
-maze.saveMazeToFile('map.ber');
+for(let i = 0; i < 20; i++) {
+    let size = 20; 
+    let maze = new Maze(size, size);
+    maze.removeWalls(20);
+    maze.saveMazeToFile(i + '.ber');
+}
