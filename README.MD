@@ -36,4 +36,4 @@ Bonus part needs some fixing:
 - Animations aren't that smooth and every enemy has the same animation in the same time.
 - Bombs animations are a little bit glitchy
 - Bombs aren't working as expected when map is bigger than 20x20
-- Scene rendering can be done way better, now it's unecesary complicated and not effective.
+- Scene rendering can be done way better, now it's unnecessary complicated and not effective.
