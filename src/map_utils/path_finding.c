@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 00:13:21 by escura            #+#    #+#             */
-/*   Updated: 2024/01/23 18:12:55 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/29 12:12:01 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	is_possible(t_vars *vars)
 
 	vars->visited = (int **)ft_calloc(1, vars->rows * sizeof(int *));
 	if (vars->visited == NULL)
-		return (0);
+		return (free_memory(vars));
 	i = 0;
 	while (i < vars->rows)
 	{

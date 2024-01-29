@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 14:17:22 by escura            #+#    #+#             */
-/*   Updated: 2024/01/25 19:15:13 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/29 12:15:35 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,7 @@ int	main(int nb, char **args)
 		map = read_map(args[1]);
 	if (check_if_correct(map) == 0)
 	{
-		ft_printf("\nError with map. Possible Problems:\n");
-		ft_printf("- Invalid Path\n- Memory allocation (unlikely)\n\n");
+		ft_printf("Map Error :(\n");
 		free(map);
 		exit(1);
 	}

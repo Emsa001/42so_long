@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 15:26:31 by escura            #+#    #+#             */
-/*   Updated: 2024/01/25 17:51:14 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/29 12:21:47 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void	render_images_2(t_data data, int i, int j)
 {
 	const t_scene	*scene = data.scene;
 	const char		block = scene->player_map[i][j];
+	const t_player	*enemy = data.enemy[0];
 
 	if (block == 'B')
 	{
@@ -38,8 +39,8 @@ static void	render_images_2(t_data data, int i, int j)
 			scene->map[i][j] = '0';
 	}
 	else if (block == 'X')
-		load_image(data.textures->enemy[0], data, j * scene->block_size, i
-			* scene->block_size);
+		load_image(data.textures->enemy[enemy->texture], data, j
+			* scene->block_size, i * scene->block_size);
 }
 
 static void	render_images(t_data data, int i, int j)

@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 15:06:16 by escura            #+#    #+#             */
-/*   Updated: 2024/01/25 18:27:35 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/29 12:22:02 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,9 @@ void	go_vertical(t_data *data, t_player *enemy, int x)
 
 int	move_enemy(t_data *data, t_player *enemy)
 {
-	t_scene				*scene;
-	int					x;
-	int					y;
+	t_scene	*scene;
+	int		x;
+	int		y;
 
 	scene = data->scene;
 	x = enemy->x;

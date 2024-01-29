@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:59:08 by escura            #+#    #+#             */
-/*   Updated: 2024/01/25 20:05:35 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/29 12:19:02 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	count_data(char *map)
 {
 	if (count(map, 'P') != 1 || count(map, 'E') != 1 || count(map, 'C') < 1)
 	{
-		ft_printf("Invalid map\n");
+		ft_printf("Map error\n");
 		free(map);
 		exit(1);
 	}

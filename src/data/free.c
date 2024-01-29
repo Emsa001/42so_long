@@ -6,7 +6,7 @@
 /*   By: escura <escura@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 14:53:48 by escura            #+#    #+#             */
-/*   Updated: 2024/01/22 20:39:47 by escura           ###   ########.fr       */
+/*   Updated: 2024/01/29 12:09:42 by escura           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	free_scene(t_scene *scene)
 	free_player_map(scene);
 	while (i < scene->rows)
 		free(scene->map[i++]);
+	free(scene->text);
 	free(scene->map);
 	free(scene->map_string);
 	free(scene);

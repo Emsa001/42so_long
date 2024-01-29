@@ -1,5 +1,5 @@
-check_wrong=0
-check_correct=1
+check_wrong=1
+check_correct=0
 
 if (( check_wrong == 1 )); then
     for ((i=1; i<=40; i++))
