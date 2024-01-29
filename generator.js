@@ -70,9 +70,7 @@ Maze.prototype.removeWalls = function(percentage) {
     }
 };
 
-for(let i = 0; i < 20; i++) {
-    let size = 20; 
-    let maze = new Maze(size, size);
-    maze.removeWalls(20);
-    maze.saveMazeToFile(i + '.ber');
-}
+let size = parseInt(process.argv[2]); 
+let maze = new Maze(size, size);
+maze.removeWalls(20);
+maze.saveMazeToFile("map.ber");
